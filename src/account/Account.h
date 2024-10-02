@@ -9,16 +9,16 @@ class Account
 {
 public:
     Account() : balance(0) {}
-    Account(int newBalance);
+    Account(double newBalance);
 
-    void deposit(int amount);
-    void withdraw(int amount);
+    void deposit(double amount);
+    void withdraw(double amount);
 
-    int getBalance();
+    double getBalance();
     void printStatement();
 
 private:
-    int balance;
+    double balance;
 };
 
 #endif

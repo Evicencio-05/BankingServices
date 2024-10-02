@@ -2,15 +2,15 @@
     Account src
 */
 
-#include "static/Account.h"
+#include "Account.h"
 
 #include <iostream>
 #include <fstream>
 #include <string>
 
-Account::Account(int newBalance) : balance(newBalance) {}
+Account::Account(double newBalance) : balance(newBalance) {}
 
-void Account::deposit(int amount) 
+void Account::deposit(double amount) 
 {
     std::ofstream statementSheet("statement.txt", std::ios_base::app);
     if (statementSheet.is_open()) {
@@ -24,7 +24,7 @@ void Account::deposit(int amount)
     }
 }
 
-void Account::withdraw(int amount) 
+void Account::withdraw(double amount) 
 {   
     std::ofstream statementSheet("statement.txt", std::ios_base::app);
     if (statementSheet.is_open()) {
@@ -38,7 +38,7 @@ void Account::withdraw(int amount)
     }
 }
 
-int Account::getBalance() 
+double Account::getBalance() 
 {
     return balance;
 }
