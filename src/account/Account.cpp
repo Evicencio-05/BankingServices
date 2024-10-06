@@ -14,7 +14,7 @@ void Account::deposit(double amount)
 {
     std::ofstream statementSheet("statement.txt", std::ios_base::app);
     if (statementSheet.is_open()) {
-        statementSheet << "Beginning balance: " << balance << "\n";
+        statementSheet << "Beginning balance: " << balance << "\t";
         balance += amount;
         statementSheet << "Ending balance: " << balance << "\n";
 
@@ -28,7 +28,7 @@ void Account::withdraw(double amount)
 {   
     std::ofstream statementSheet("statement.txt", std::ios_base::app);
     if (statementSheet.is_open()) {
-        statementSheet << "Beginning balance: " << balance << "\n";
+        statementSheet << "Beginning balance: " << balance << "\t";
         balance -= amount;
         statementSheet << "Ending balance: " << balance << "\n";
 

@@ -1,0 +1,2 @@
+Fix getCorrectType()
+ - Trouble with matching calls
