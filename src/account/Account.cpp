@@ -43,6 +43,12 @@ double Account::getBalance()
     return balance;
 }
 
+void Account::clearStatement() {
+    std:: ifstream statementSheet;
+    statementSheet.open("statement.txt", std::ofstream::out | std::ofstream::app);
+    statementSheet.close();
+}
+
 void Account::printStatement() 
 {
     std::ifstream statementSheet("statement.txt");

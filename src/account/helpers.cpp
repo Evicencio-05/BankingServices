@@ -9,48 +9,27 @@
 
 
 void deposit(Account& myAccount) {
-    std::cout << "Enter the amount you would like to deposit." << std::endl;
+    std::cout << "Enter the amount you would like to deposit.\n" << std::endl;
     double deposit = 0.0;
-    myAccount.deposit(getCorrectType<double>());
+    myAccount.deposit(getCorrectType(deposit));
 }
 
 void withdraw(Account& myAccount) {
-    std::cout << "Enter the amount you would like to withdraw." << std::endl;
+    std::cout << "Enter the amount you would like to withdraw.\n" << std::endl;
     double withdraw = 0.0;
-    myAccount.withdraw(getCorrectType<double>());
-}
-
-void printStatement(Account& myAccount) {
-    myAccount.printStatement();
+    myAccount.withdraw(getCorrectType(withdraw));
 }
 
 template <typename T>
-T getCorrectType() {
-    T userInput;
-    std::string inputLine;
-
-    while (true) {
-        std::getline(std::cin, inputLine);
-        std::istringstream iss(inputLine);
-
-        if constexpr (std::is_same_v<T, std::string>) {
-            userInput = inputLine;
-            break;
-        } else {
-            if (iss >> userInput) {
-                char remainingStream;
-                if(iss >> remainingStream) {
-                    std::cout << "Invalid input. Please only enter a "
-                            << typeid(T).name() << "." << std::endl;
-                } else {
-                    break;
-                }
-            } else {
-                std::cout << "Invalid input. Please enter a valid "
-                        << typeid(T).name() << "." << std::endl;
-            }
-        }
+T getCorrectType(T& paramToMatch) {
+    std::cin >> paramToMatch;
+    while (std::cin.fail())
+    {
+        std::cerr << "**Input failure**\n" << std::endl;
         std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Please input a valid " << typeid(T).name() << ".\n";
+        std::cin >> paramToMatch;
     }
-    return userInput;
+    return paramToMatch;
 }

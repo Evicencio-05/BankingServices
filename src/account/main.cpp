@@ -22,8 +22,9 @@ int main() {
         std::cout << "What else would you like to do?"
                 << "\n 1. Deposit"
                 << "\n 2. Withdraw"
-                << "\n 3. Print statement"
-                << "\n 4. Close\n";
+                << "\n 3. Clear statement"
+                << "\n 4. Print statement"
+                << "\n 5. Close\n";
         int nextChoice = 0;
         getCorrectType<int>(nextChoice);
         switch (nextChoice)
@@ -35,9 +36,12 @@ int main() {
             withdraw(myAccount);
             break;
         case 3:
-            printStatement(myAccount);
+            myAccount.clearStatement();
             break;
         case 4:
+            myAccount.printStatement();
+            break;
+        case 5:
             done = true;
             break;
         default:

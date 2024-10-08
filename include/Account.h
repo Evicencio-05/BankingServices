@@ -17,6 +17,7 @@ public:
     void withdraw(double amount);
 
     double getBalance();
+    void clearStatement();
     void printStatement();
 
 private:
