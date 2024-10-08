@@ -7,6 +7,9 @@
 #ifndef ACCOUNT_H
 #define ACCOUNT_H
 
+#include <string>
+#include <vector>
+
 class Account 
 {
 public:
@@ -21,7 +24,11 @@ public:
     void printStatement();
 
 private:
+    int accountID;
+    int userID;
+    std::string accountType;
     double balance;
+    std::vector<int> transactionId;
 };
 
 #endif
