@@ -1,14 +1,13 @@
 /*
     Account class
 */
-
-#pragma once
-
 #ifndef ACCOUNT_H
 #define ACCOUNT_H
 
 #include <string>
 #include <vector>
+
+#include <AccountTypes.h>
 
 class Account 
 {
@@ -26,7 +25,8 @@ public:
 private:
     int accountID;
     int userID;
-    std::string accountType;
+    AccountType type;
+    AccountStatus status;
     double balance;
     std::vector<int> transactionId;
 };

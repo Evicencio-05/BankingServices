@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef ACCOUNTTYPES_H
 #define ACCOUNTTYPES_H
 
