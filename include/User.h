@@ -7,13 +7,23 @@
 class User 
 {
 public:
-    
+    User() : ID(0), username("John Doe"), password("Password") {} 
+    User(int newId, std::string newUsername, std::string newPassword) 
+        : ID(newId), username(newUsername), password(newPassword) {} 
+
+    inline int getUserID()                          const { return ID; }
+    inline std::string getUsername()                const { return username; }
+    inline const std::vector<int>& getAccountIDs()  const { return accountIDs; }
+
+    bool authenticate();
+    void changePassword();
+    bool addAccount(int accountID);
 
 private:
-    const int ID;
-    std::string userName;
+    int ID;
+    std::string username;
     std::string password;
-    std::vector<int> accountID;
+    std::vector<int> accountIDs;
 };
 
 

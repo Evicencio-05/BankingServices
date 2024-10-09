@@ -7,19 +7,6 @@
 #include <type_traits>
 #include <string>
 
-
-void deposit(Account& myAccount) {
-    std::cout << "Enter the amount you would like to deposit.\n" << std::endl;
-    double deposit = 0.0;
-    myAccount.deposit(getCorrectType(deposit));
-}
-
-void withdraw(Account& myAccount) {
-    std::cout << "Enter the amount you would like to withdraw.\n" << std::endl;
-    double withdraw = 0.0;
-    myAccount.withdraw(getCorrectType(withdraw));
-}
-
 template <typename T>
 T getCorrectType(T& paramToMatch) {
     std::cin >> paramToMatch;

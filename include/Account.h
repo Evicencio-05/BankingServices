@@ -18,24 +18,23 @@ public:
             AccountStatus newStatus = AccountStatus::Active, double initialBalance = 0.0) 
             : accountID(newAccountID), userID(creatorUserID), type(newType), 
             status(newStatus), balance(initialBalance) {
-                transactionID.reserve(20);
+                transactionIDs.reserve(20);
             }            
 
-    inline int getAccountID()                   const { return accountID; }
-    inline int getUserID()                      const { return userID; }
-    inline AccountType getAccountType()         const { return type; }
-    inline AccountStatus getAccountStatus()     const { return status; }
-    inline double getAccountBalance()           const { return balance; }
-    inline std::vector<int> getAccountHistory() const { return transactionID; }
+    inline int getAccountID()                           const { return accountID; }
+    inline int getUserID()                              const { return userID; }
+    inline AccountType getAccountType()                 const { return type; }
+    inline AccountStatus getAccountStatus()             const { return status; }
+    inline double getAccountBalance()                   const { return balance; }
+    inline const std::vector<int>& getAccountHistory()  const { return transactionIDs; }
 
-    inline void deposit(double amount) { balance += amount;}
-    inline bool withdrawal(double amount) {
-        if (balance > amount) {
-            balance -= amount;
-            return true;
-        } 
-        return false;
-    }
+    inline void setType(AccountType newType) { type = newType; }
+    inline void setStatus(AccountStatus newStatus) { status = newStatus; }
+
+    inline void deposit(double amount);
+    inline bool withdrawal(double amount);
+    inline void addTransaction(int transactionID);
+
 
 private:
     int accountID;
@@ -43,7 +42,7 @@ private:
     AccountType type;
     AccountStatus status;
     double balance;
-    std::vector<int> transactionID;
+    std::vector<int> transactionIDs;
 };
 
 #endif

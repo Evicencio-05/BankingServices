@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef BANK_H
 #define BANK_H
 
