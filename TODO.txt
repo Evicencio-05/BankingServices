@@ -1,2 +1,8 @@
-Fix getCorrectType()
- - Trouble with matching calls
+Impliment the different classes and connect them to the main.
+
+
+Further Progress Goals:
+    1. Hashing for auth
+    2. Concurrency (multithreading)
+    3. Data persistence
+        - Maybe connect to a DB (postgres or mySQL)
