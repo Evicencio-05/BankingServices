@@ -2,6 +2,7 @@
 #define TRANSACTIONS_H
 
 #include <chrono>
+#include <ctime>
 
 #include "TransactionTypes.h"
 
@@ -18,12 +19,12 @@ public:
         : transactionID(tranID), type(tranType), amount(tranAmount), 
             fromAccountID(tranFromAccountId), toAccountID(tranToAccountId), date(tranDate) {}
 
-    inline int getTransactionID()                                       const { return transactionID; }
-    inline TransactionType getTransactionType()                         const { return type; }
-    inline double getTransactionAmount()                                const { return amount; }
-    inline int getFromAccountID()                                       const { return fromAccountID; }
-    inline int getToAccountID()                                         const { return toAccountID; }
-    inline std::chrono::system_clock::time_point getTransactionDate()   const { return date; }
+    inline int getTransactionID()               const { return transactionID; }
+    inline TransactionType getTransactionType() const { return type; }
+    inline double getTransactionAmount()        const { return amount; }
+    inline int getFromAccountID()               const { return fromAccountID; }
+    inline int getToAccountID()                 const { return toAccountID; }
+    inline std::time_t getTransactionDate()     const { return std::chrono::system_clock::to_time_t(date); }
 
 private:
     int transactionID;

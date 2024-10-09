@@ -9,7 +9,7 @@ enum class AccountType {
 enum class AccountStatus {
     Active,
     Suspended,
-    Closed
+    Closed,
 };
 
 #endif

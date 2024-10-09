@@ -2,11 +2,11 @@
     Account src
 */
 
-#include "Account.h"
-
 #include <iostream>
 #include <fstream>
 #include <string>
+
+#include "Account.h"
 
 Account::Account(double newBalance) : balance(newBalance) {}
 
