@@ -12,16 +12,23 @@ Bank::Bank() {
 }
 
 int Bank::createUser(const std::string &username, const std::string &password)
-{
-    users.emplace(nextUserID, User(nextUserID, username, password));
+{   
+    int userID = nextUserID++;
+    users.emplace(userID, User(userID, username, password));
     std::cout << "User created with ID: "
-                << nextUserID << ".\n";
-    nextUserID++;        
+                << userID << ".\n";
 }
 
 int Bank::createAccount(int userID, AccountType type, AccountStatus status, double initialDeposit)
 {
-    accounts.emplace(nextAccountID, Account(nextAccountID, userID));
+    accounts.emplace(nextAccountID, Account(nextAccountID, userID, type, status, initialDeposit));
+    users[userID].addAccount(nextAccountID);
+    if (initialDeposit > 0.0) {
+        createTransaction(0, nextAccountID, initialDeposit, TransactionType::Deposit);
+    }
+
+
+    nextAccountID++;
 }
 
 int Bank::createTransaction(int fromAccountID, int toAccountID, double amount, TransactionType type)
