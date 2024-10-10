@@ -15,7 +15,7 @@ public:
     inline std::string getUsername()                const { return username; }
     inline const std::vector<int>& getAccountIDs()  const { return accountIDs; }
 
-    bool authenticate();
+    bool authenticate(const std::string& password);
     void changePassword();
     bool addAccount(int accountID);
 
