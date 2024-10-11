@@ -16,7 +16,7 @@ public:
     inline const std::vector<int>& getAccountIDs()  const { return accountIDs; }
 
     bool authenticate(const std::string& password);
-    void changePassword();
+    bool changePassword(const std::string& oldPassword, const std::string& newPassword);
     bool addAccount(int accountID);
 
 private:

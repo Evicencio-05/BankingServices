@@ -8,8 +8,8 @@
 
 #include "Account.h"
 
-bool Account::deposit(double amount) { balance += amount;}
-bool Account::addTransaction(int transactionID) { transactionIDs.push_back(transactionID); }
+void Account::deposit(double amount) { balance += amount; }
+void Account::addTransaction(int transactionID) { transactionIDs.push_back(transactionID); }
 bool Account::withdrawal(double amount) 
 {
     if (balance > amount) {

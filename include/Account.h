@@ -31,9 +31,9 @@ public:
     inline void setType(AccountType newType) { type = newType; }
     inline void setStatus(AccountStatus newStatus) { status = newStatus; }
 
-    inline bool deposit(double amount);
+    inline void deposit(double amount);
     inline bool withdrawal(double amount);
-    inline bool addTransaction(int transactionID);
+    inline void addTransaction(int transactionID);
 
     std::string accountTypeToString(AccountType type) const;
     std::string accountStatusToString(AccountStatus status) const;
