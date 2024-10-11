@@ -70,9 +70,8 @@ bool Bank::deposit(int accountID, double amount)
 bool Bank::withdraw(int accountID, double amount)
 {
     auto it = accounts.find(accountID);
-    if (it != accounts.end() && it->second.getAccountBalance() >= amount) 
+    if (it != accounts.end() && it->second.withdrawal(amount)) 
     {
-        it->second.withdrawal(amount);
         createTransaction(accountID, 0, amount, TransactionType::Withdrawal);
         std::cout << "Withdrew $<< " << amount << " from account ID: "
                     << accountID << std::endl;
@@ -87,14 +86,56 @@ bool Bank::transfer(int fromAccountID, int toAccountID, double amount)
     auto fromAccountIt = accounts.find(fromAccountID);
     auto toAccountIt = accounts.find(toAccountID);
     if (fromAccountIt != accounts.end() && toAccountIt != accounts.end()
-        && fromAccountIt->second.getAccountBalance( )
+        && fromAccountIt->second.withdrawal(amount))  
+    {
+        toAccountIt->second.deposit(amount);
+        createTransaction(fromAccountID, toAccountID, amount, TransactionType::Transfer);
+        std::cout << "Transfer of $" << amount << "\nFrom accout ID " << fromAccountID
+                    << "\nTo account ID: " << toAccountID << std::endl; 
+        return true;
+    }
+    std::cout << "**FAILED**\nTransfer of $" << amount << "\nFrom accout ID " << fromAccountID
+                << "\nTo account ID: " << toAccountID << std::endl; 
     return false;
 }
 
 void Bank::displayUserInfo(const User &user) const
 {
+    std::cout << "User ID: " << user.getUserID() 
+                << "\n\tName: " << user.getUsername()
+                << "\n\tAccounts: " << std::endl;
+    for (int accountID : user.getAccountIDs())
+    {
+        auto it = accounts.find(accountID);
+        if (it != accounts.end())
+        {
+            std::cout << "\tAccount ID: " << it->second.getAccountID()
+                        << "\t\tType: " << it->second.accountTypeToString(it->second.getAccountType())
+                        << "\t\tBalance: " << it->second.getAccountBalance()
+                        << "\t\tActive: " << it->second.accountStatusToString(it->second.getAccountStatus())
+                        << std::endl; 
+        }
+    }
 }
 
 void Bank::displayTransactionHistory(int accountID) const
 {
+    auto it = accounts.find(accountID);
+    if (it != accounts.end()) 
+    {
+        std::cout << "Transaction history for account ID: " << accountID;
+        for (int transactionID : it->second.getAccountHistory())
+        {
+            auto transactionIt = transactions.find(transactionID);
+            if (transactionIt != transactions.end())
+            {
+                const Transaction& transaction = transactionIt->second;
+                std::cout << "\n\tTransaction ID: " << transaction.getTransactionID()
+                            << "\t\tType: " << transaction.transactionTypeToString(transaction.getTransactionType())
+                            << "\t\tAmount: " << transaction.getTransactionAmount()
+                            << "\t\tDate: " << ctime(&transaction.getTransactionDate())
+                            << std::endl;
+            }
+        }
+    }
 }

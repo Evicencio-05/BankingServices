@@ -3,6 +3,7 @@
 
 #include <chrono>
 #include <ctime>
+#include <string>
 
 #include "TransactionTypes.h"
 
@@ -10,9 +11,11 @@ class Transaction
 {
 public:
     Transaction() : transactionID(0), type(TransactionType::None), 
-                    amount(0.0), fromAccountID(0), toAccountID(0) {
+                    amount(0.0), fromAccountID(0), toAccountID(0) 
+                    {
                         date = std::chrono::system_clock::now();
                     }
+
     Transaction(int tranID, TransactionType tranType, double tranAmount, 
                 int tranFromAccountId, int tranToAccountId, 
                 std::chrono::system_clock::time_point tranDate = std::chrono::system_clock::now())
@@ -24,7 +27,9 @@ public:
     inline double getTransactionAmount()        const { return amount; }
     inline int getFromAccountID()               const { return fromAccountID; }
     inline int getToAccountID()                 const { return toAccountID; }
-    inline std::time_t getTransactionDate()     const { return std::chrono::system_clock::to_time_t(date); }
+    inline const std::time_t& getTransactionDate()     const { return std::chrono::system_clock::to_time_t(date); }
+
+    std::string transactionTypeToString(TransactionType type) const;
 
 private:
     int transactionID;

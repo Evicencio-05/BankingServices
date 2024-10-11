@@ -31,10 +31,12 @@ public:
     inline void setType(AccountType newType) { type = newType; }
     inline void setStatus(AccountStatus newStatus) { status = newStatus; }
 
-    inline void deposit(double amount);
+    inline bool deposit(double amount);
     inline bool withdrawal(double amount);
-    inline void addTransaction(int transactionID);
+    inline bool addTransaction(int transactionID);
 
+    std::string accountTypeToString(AccountType type) const;
+    std::string accountStatusToString(AccountStatus status) const;
 
 private:
     int accountID;
