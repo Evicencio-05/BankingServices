@@ -2,8 +2,8 @@
     Main
 */
 
-#include "Account.cpp"
-#include "helpers.cpp"
+#include "Bank.cpp"
+#include "util/helpers.cpp"
 
 #include <iostream>
 #include <fstream>
@@ -11,10 +11,14 @@
 
 
 int main() {
-    std::cout << "Hello lets get started with your account. What is your initial investment?\n";
-    double initialInvestment = 0.0;
-    getCorrectType<double>(initialInvestment);
+    Bank systemBank();
 
+    bool runFlag = true;
+
+    while(runFlag) 
+    {
+        
+    }
     
 
     return 0;

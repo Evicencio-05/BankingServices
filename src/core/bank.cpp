@@ -36,8 +36,10 @@ int Bank::createTransaction(int fromAccountID, int toAccountID, double amount, T
 {
     int transactionID = nextTransactionID++;
     std::chrono::system_clock::time_point currentDate = std::chrono::system_clock::now();
-    transactions.emplace(transactionID, Transaction(transactionID, type, 
-                                                amount, fromAccountID, toAccountID, currentDate));
+    transactions.emplace(transactionID, 
+                        Transaction(transactionID, type, 
+                                    amount, fromAccountID, 
+                                    toAccountID, currentDate));
     if (fromAccountID != 0) accounts[fromAccountID].addTransaction(transactionID);
     if (toAccountID != 0) accounts[toAccountID].addTransaction(transactionID);
     return transactionID;

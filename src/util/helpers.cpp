@@ -7,7 +7,8 @@
 #include <string>
 
 template <typename T>
-T getCorrectType(T& paramToMatch) {
+T getCorrectType(T& paramToMatch) 
+{
     std::cin >> paramToMatch;
     while (std::cin.fail())
     {
