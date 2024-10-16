@@ -15,6 +15,7 @@ int main() {
     double initialInvestment = 0.0;
     getCorrectType<double>(initialInvestment);
 
+    
 
     return 0;
 }

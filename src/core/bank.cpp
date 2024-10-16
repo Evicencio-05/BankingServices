@@ -90,11 +90,11 @@ bool Bank::transfer(int fromAccountID, int toAccountID, double amount)
     {
         toAccountIt->second.deposit(amount);
         createTransaction(fromAccountID, toAccountID, amount, TransactionType::Transfer);
-        std::cout << "Transfer of $" << amount << "\nFrom accout ID " << fromAccountID
+        std::cout << "Transfer of $" << amount << "\nFrom account ID " << fromAccountID
                     << "\nTo account ID: " << toAccountID << std::endl; 
         return true;
     }
-    std::cout << "**FAILED**\nTransfer of $" << amount << "\nFrom accout ID " << fromAccountID
+    std::cout << "**FAILED**\nTransfer of $" << amount << "\nFrom account ID " << fromAccountID
                 << "\nTo account ID: " << toAccountID << std::endl; 
     return false;
 }
