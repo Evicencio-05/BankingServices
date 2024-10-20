@@ -21,19 +21,19 @@ public:
                 transactionIDs.reserve(20);
             }            
 
-    inline int getAccountID()                           const { return accountID; }
-    inline int getUserID()                              const { return userID; }
-    inline AccountType getAccountType()                 const { return type; }
-    inline AccountStatus getAccountStatus()             const { return status; }
-    inline double getAccountBalance()                   const { return balance; }
-    inline const std::vector<int>& getAccountHistory()  const { return transactionIDs; }
+    int getAccountID()                           const { return accountID; }
+    int getUserID()                              const { return userID; }
+    AccountType getAccountType()                 const { return type; }
+    AccountStatus getAccountStatus()             const { return status; }
+    double getAccountBalance()                   const { return balance; }
+    const std::vector<int>& getAccountHistory()  const { return transactionIDs; }
 
-    inline void setType(AccountType newType) { type = newType; }
-    inline void setStatus(AccountStatus newStatus) { status = newStatus; }
+    void setType(AccountType newType) { type = newType; }
+    void setStatus(AccountStatus newStatus) { status = newStatus; }
 
-    inline void deposit(double amount);
-    inline bool withdrawal(double amount);
-    inline void addTransaction(int transactionID);
+    void deposit(double amount);
+    bool withdrawal(double amount);
+    void addTransaction(int transactionID);
 
     std::string accountTypeToString(AccountType type) const;
     std::string accountStatusToString(AccountStatus status) const;

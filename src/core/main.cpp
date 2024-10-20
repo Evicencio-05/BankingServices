@@ -2,24 +2,19 @@
     Main
 */
 
-#include "Bank.cpp"
-#include "util/helpers.cpp"
-
 #include <iostream>
 #include <fstream>
 #include <string>
 
+#include "Bank.h"
+#include "helpers.h"
+#include "System.h"
 
 int main() {
-    Bank systemBank();
-
-    bool runFlag = true;
-
-    while(runFlag) 
-    {
-        
-    }
     
+    System systemBank;
+
+    systemBank.run();    
 
     return 0;
 }

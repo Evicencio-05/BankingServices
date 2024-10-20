@@ -22,13 +22,13 @@ public:
         : transactionID(tranID), type(tranType), amount(tranAmount), 
             fromAccountID(tranFromAccountId), toAccountID(tranToAccountId), date(tranDate) {}
 
-    inline int getTransactionID()               const { return transactionID; }
-    inline TransactionType getTransactionType() const { return type; }
-    inline double getTransactionAmount()        const { return amount; }
-    inline int getFromAccountID()               const { return fromAccountID; }
-    inline int getToAccountID()                 const { return toAccountID; }
-    inline const std::time_t& getTransactionDate()     const { return std::chrono::system_clock::to_time_t(date); }
+    int getTransactionID()                      const { return transactionID; }
+    TransactionType getTransactionType()        const { return type; }
+    double getTransactionAmount()               const { return amount; }
+    int getFromAccountID()                      const { return fromAccountID; }
+    int getToAccountID()                        const { return toAccountID; }
 
+    const std::time_t& getTransactionDate() const;
     std::string transactionTypeToString(TransactionType type) const;
 
 private:

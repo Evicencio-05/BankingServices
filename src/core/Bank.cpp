@@ -6,12 +6,6 @@
 
 #include "Bank.h"
 
-Bank::Bank() {
-    users.reserve(10);
-    accounts.reserve(100);
-    transactions.reserve(1000);
-}
-
 int Bank::createUser(const std::string &username, const std::string &password)
 {   
     int userID = nextUserID++;
@@ -45,7 +39,7 @@ int Bank::createTransaction(int fromAccountID, int toAccountID, double amount, T
     return transactionID;
 }
 
-User *Bank::authenticateUser(int userID, const std::string &password)
+User* Bank::authenticateUser(int userID, const std::string &password)
 {
     auto it = users.find(userID);
     if (it != users.end() && it->second.authenticate(password)) 
