@@ -1,5 +1,7 @@
 #include "User.h"
 
+#include <string>
+
 bool User::authenticate(const std::string &password)
 {
     return password == this->password;

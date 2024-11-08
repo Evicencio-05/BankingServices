@@ -129,7 +129,7 @@ void Bank::displayTransactionHistory(int accountID) const
                 std::cout << "\n\tTransaction ID: " << transaction.getTransactionID()
                             << "\t\tType: " << transaction.transactionTypeToString(transaction.getTransactionType())
                             << "\t\tAmount: " << transaction.getTransactionAmount()
-                            << "\t\tDate: " << ctime(&transaction.getTransactionDate())
+                            << "\t\tDate: " << transaction.getTransactionDate()
                             << std::endl;
             }
         }

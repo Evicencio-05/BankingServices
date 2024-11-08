@@ -3,16 +3,15 @@
 */
 
 #include <iostream>
-#include <fstream>
 #include <string>
 
 #include "Bank.h"
 #include "helpers.h"
-#include "System.h"
+#include "SystemBank.h"
 
 int main() {
     
-    System systemBank;
+    SystemBank systemBank = SystemBank();
 
     systemBank.run();    
 

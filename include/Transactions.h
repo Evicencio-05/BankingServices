@@ -28,7 +28,7 @@ public:
     int getFromAccountID()                      const { return fromAccountID; }
     int getToAccountID()                        const { return toAccountID; }
 
-    const std::time_t& getTransactionDate() const;
+    const std::string getTransactionDate() const;
     std::string transactionTypeToString(TransactionType type) const;
 
 private:

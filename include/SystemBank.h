@@ -1,21 +1,19 @@
-#ifndef SYSTEM_H
-#define SYSTEM_H
-
-
+#ifndef SYSTEMBANK_H
+#define SYSTEMBANK_H
 
 #include "Bank.h"
 
-class System
+class SystemBank
 {
 public:
-    System() {}
+    SystemBank() : exit(false) {}
 
     void run();
     void createUser();
     void login();
     
     void createAccount();
-    void deposit()
+    void deposit();
     void createTransaction();
 
 private:
