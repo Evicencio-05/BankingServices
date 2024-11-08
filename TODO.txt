@@ -1,4 +1,12 @@
-Impliment the different classes and connect them to the main.
+- Add the system loop after login. 
+    - Authentification
+    - loop
+        - Transactions
+        - View
+        - New account
+
+- Create tests
+
 
 
 Further Progress Goals:
