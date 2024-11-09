@@ -7,7 +7,8 @@ bool User::authenticate(const std::string &password)
     return password == this->password;
 }
 
-bool User::changePassword(const std::string& oldPassword, const std::string& newPassword)
+bool User::changePassword(const std::string& oldPassword, 
+                            const std::string& newPassword)
 {
     if (authenticate(oldPassword))
     {

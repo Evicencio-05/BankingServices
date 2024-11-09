@@ -6,19 +6,21 @@
 class SystemBank
 {
 public:
-    SystemBank() : exit(false) {}
+    SystemBank() {}
 
     void run();
     void createUser();
     void login();
+    void userLoop(const User& user);
     
-    void createAccount();
-    void deposit();
-    void createTransaction();
+    void deposit(int userID);
+    void withdrawal(int userID);
+    void transfer(int userID);
+    void createAccount(int userID);
 
 private:
     Bank systemBank;
-    bool exit;
+    const int MAX_LOGIN_ATTEMPTS = 5;
 };
 
 #endif
