@@ -69,7 +69,15 @@ void SystemBank::createUser()
 
 void SystemBank::login()
 {
-    
+    std::cout << "Enter your username\n";
+    std::string username;
+    std::cin >> username;
+
+    std::cout << "Enter your password\n";
+    std::string password;
+    std::cin >> password;
+
+    systemBank.authenticateUser(username, password);
 }
 
 void SystemBank::createAccount()

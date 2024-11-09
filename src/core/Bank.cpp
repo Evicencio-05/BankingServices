@@ -3,22 +3,25 @@
 #include <ctime>
 #include <chrono>
 #include <string>
+#include <utility>
 
 #include "Bank.h"
 
-int Bank::createUser(const std::string &username, const std::string &password)
+int Bank::createUser(const std::string& username, const std::string &password)
 {   
     int userID = nextUserID++;
-    users.emplace(userID, User(userID, username, password));
+    users.emplace(username, User(userID, username, password));
     std::cout << "User created with ID: " << userID << ".\n";
     return userID;
 }
 
-int Bank::createAccount(int userID, AccountType type, AccountStatus status, double initialDeposit)
+int Bank::createAccount(std::string& username, AccountType type, AccountStatus status, double initialDeposit)
 {
     int accountID = nextAccountID++;
+    User& user = users[username];
+    int userID = user.getUserID();
     accounts.emplace(accountID, Account(accountID, userID, type, status, initialDeposit));
-    users[userID].addAccount(accountID);
+    user.addAccount(accountID);
     if (initialDeposit > 0.0) {
         createTransaction(0, accountID, initialDeposit, TransactionType::Deposit);
     }
@@ -39,9 +42,9 @@ int Bank::createTransaction(int fromAccountID, int toAccountID, double amount, T
     return transactionID;
 }
 
-User* Bank::authenticateUser(int userID, const std::string &password)
+User* Bank::authenticateUser(std::string& username, const std::string &password)
 {
-    auto it = users.find(userID);
+    auto it = users.find(username);
     if (it != users.end() && it->second.authenticate(password)) 
     {
         return &(it->second);
