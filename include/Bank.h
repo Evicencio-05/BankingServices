@@ -27,12 +27,8 @@ public:
     int createAccount(std::string& username, AccountType type, 
                         AccountStatus status = AccountStatus::Active, 
                         double initialDeposit = 0.0);
-    int createTransaction(int fromAccountID, 
-                            int toAccountID, 
-                            double amount, 
-                            TransactionType type);
 
-    User* authenticateUser(std::string& username, const std::string& password);
+    User* authenticateUser(const std::string& username, const std::string& password);
 
     bool deposit(int accountID, double amount);
     bool withdraw(int accountID, double amount);
@@ -41,7 +37,14 @@ public:
     void displayUserInfo(const User& user) const;
     void displayTransactionHistory(int accountID) const;
 
+    bool userExists(const std::string& username) const;
+
 private:
+    int createTransaction(int fromAccountID, 
+                            int toAccountID, 
+                            double amount, 
+                            TransactionType type);
+
     std::unordered_map<std::string, User> users;
     std::unordered_map<int, Account> accounts;
     std::unordered_map<int, Transaction> transactions;

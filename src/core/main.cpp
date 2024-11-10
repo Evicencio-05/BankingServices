@@ -7,11 +7,11 @@
 
 #include "Bank.h"
 #include "helpers.h"
-#include "SystemBank.h"
+#include "Application.h"
 
 int main() {
     
-    SystemBank systemBank = SystemBank();
+    Application systemBank = Application();
 
     systemBank.run();    
 

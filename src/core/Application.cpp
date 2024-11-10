@@ -7,9 +7,9 @@
 
 #include "Bank.h"
 #include "helpers.h"
-#include "SystemBank.h"
+#include "Application.h"
 
-void SystemBank::run()
+void Application::run()
 {
     std::cout << "Hello! Welcome to the bank. " 
                 << "What would you like to do today?\n"
@@ -40,9 +40,11 @@ void SystemBank::run()
                 break;
         }
     }
+
+    std::cout << "Goodbye!\n";
 }
 
-void SystemBank::createUser()
+void Application::createUser()
 {
     std::cout << "Enter your name.\n";
     std::string name;
@@ -67,10 +69,11 @@ void SystemBank::createUser()
         std::cout << "Re-enter your password.\n";
         std::cin >> verifyPassword;
     }
-    systemBank.createUser(name, password);
+    application.createUser(name, password);
+    login(name, password);
 }
 
-void SystemBank::login()
+void Application::login()
 {
     User* user = nullptr;
     int attempts = 0;
@@ -85,7 +88,7 @@ void SystemBank::login()
         std::string password;
         std::cin >> password;
 
-        user = systemBank.authenticateUser(username, password);
+        user = application.authenticateUser(username, password);
         if (user == nullptr)
         {
             std::cerr << "Authentification failed. You have "
@@ -97,25 +100,49 @@ void SystemBank::login()
     if (user != nullptr)
     {
         userLoop(*user);
+    
+        delete user;
+        user = nullptr;
     }
 }
 
-void SystemBank::userLoop(const User& user)
+void Application::login(const std::string& username, const std::string& password)
+{
+
+    User* user = application.authenticateUser(username, password);
+    if (user == nullptr)
+    {
+        std::cerr << "Application error!\n"
+                    << "*User not created.*\n";
+    } 
+    else 
+    {
+        userLoop(*user);
+        
+        delete user;
+        user = nullptr;
+    }
+}
+
+void Application::userLoop(const User& user)
 {   
     bool exit = false;
 
+    std::cout << "What would you like to do?\n"
+            << "1. Deposit\n"
+            << "2. Withdrawal\n"
+            << "3. Transfer\n"
+            << "4. View Statement\n"
+            << "5. Open Account\n"
+            << "6. Exit\n";
+    int choice = 0;
+    std::cin >> choice;
+
+    int userID = user.getUserID();
+    
     while (!exit)
     {
-        std::cout << "What would you like to do?\n"
-                << "1. Deposit\n"
-                << "2. Withdrawal\n"
-                << "3. Transfer\n"
-                << "4. View Statement\n"
-                << "5. Open Account\n";
-        int choice = 0;
-        std::cin >> choice;
-
-        int userID = user.getUserID();
+        std::cout << "What would you like to do?\n";
 
         switch (choice)
         {
@@ -129,47 +156,67 @@ void SystemBank::userLoop(const User& user)
                 transfer(userID);
                 break;
             case 4:
-                systemBank.displayTransactionHistory(userID);
+                application.displayTransactionHistory(userID);
                 break;
             case 5:
                 createAccount(userID);
                 break;
+            case 6:
+                exit = true;
+                break;
             default:
+                std::cerr << "Invalid input. Please enter a number (1-5).\n";
+                std::cin >> choice;
                 break;
         }
     }
 }
 
 
-void SystemBank::deposit(int userID)
+void Application::deposit(int userID)
 {
     std::cout << "How much would you like to deposit?\n";
     std::string stringAmount;
     std::cin >> stringAmount;
-    std::string::size_type sz;
     double amount = std::stod(stringAmount);
 
-    systemBank.deposit(userID, amount);
+    application.deposit(userID, amount);
 }
 
-void SystemBank::withdrawal(int userID)
+void Application::withdrawal(int userID)
 {
     std::cout << "How much would you like to withdrawal?\n";
     std::string stringAmount;
     std::cin >> stringAmount;
-    std::string::size_type sz;
-
     double amount = std::stod(stringAmount);
     
-    systemBank.withdraw(userID, amount);
+    bool successful = application.withdraw(userID, amount);
+
+    if (!successful)
+    {
+        std::cerr << "Withdrawal not completed. Insufficient balance.\n";
+    }
 }
 
-void SystemBank::transfer(int userID)
+void Application::transfer(int userID)
 {
+    std::cout << "How much would you like to transfer?\n";
+    std::string stringAmount;
+    std::cin >> stringAmount;
+    double amount = std::stod(stringAmount);
+
+    std::cout << "Enter recipient username.\n";
+    std::string recipientUsername;
+    std::cin >> recipientUsername;
+
+    if (application.userExists(recipientUsername))
+    {
+        
+    }
 
 }
 
-void SystemBank::createAccount(int userID)
+void Application::createAccount(int userID)
 {
 
 }

@@ -42,7 +42,7 @@ int Bank::createTransaction(int fromAccountID, int toAccountID, double amount, T
     return transactionID;
 }
 
-User* Bank::authenticateUser(std::string& username, const std::string &password)
+User* Bank::authenticateUser(const std::string& username, const std::string &password)
 {
     auto it = users.find(username);
     if (it != users.end() && it->second.authenticate(password)) 
@@ -137,4 +137,10 @@ void Bank::displayTransactionHistory(int accountID) const
             }
         }
     }
+}
+
+bool Bank::userExists(const std::string& username) const
+{
+    auto it = users.find(username);
+    return (it != users.end());
 }

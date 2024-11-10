@@ -1,16 +1,19 @@
-#ifndef SYSTEMBANK_H
-#define SYSTEMBANK_H
+#ifndef APPLICATION_H
+#define APPLICATION_H
 
 #include "Bank.h"
 
-class SystemBank
+#include <string>
+
+class Application
 {
 public:
-    SystemBank() {}
+    Application() {}
 
     void run();
     void createUser();
     void login();
+    void login(const std::string& username, const std::string& password);
     void userLoop(const User& user);
     
     void deposit(int userID);
@@ -19,7 +22,7 @@ public:
     void createAccount(int userID);
 
 private:
-    Bank systemBank;
+    Bank application;
     const int MAX_LOGIN_ATTEMPTS = 5;
 };
 
