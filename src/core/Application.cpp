@@ -175,6 +175,8 @@ void Application::userLoop(const User& user)
 
 void Application::deposit(int userID)
 {
+    std::cout << "Select account";
+
     std::cout << "How much would you like to deposit?\n";
     std::string stringAmount;
     std::cin >> stringAmount;

@@ -16,12 +16,7 @@ class Bank
 public:
     Bank() : nextUserID(1), 
         nextAccountID(10001), 
-        nextTransactionID(1000001) 
-    {
-        users.reserve(10);
-        accounts.reserve(100);
-        transactions.reserve(1000);
-    }
+        nextTransactionID(1000001) {}
 
     int createUser(const std::string& username, const std::string& password);
     int createAccount(std::string& username, AccountType type, 

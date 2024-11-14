@@ -4,6 +4,10 @@
         - View
         - New account
 
+- Account Class
+    - Print accounts function in the user class
+    - Limit to 5 accounts a user can have
+
 - Create tests
 
 

@@ -11,7 +11,7 @@
 
 int main() {
     
-    Application systemBank = Application();
+    Application systemBank;
 
     systemBank.run();    
 

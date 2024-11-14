@@ -8,7 +8,7 @@ set(SOURCES
     src/core/Account.cpp
     src/core/Bank.cpp
     src/core/main.cpp
-    src/core/SystemBank.cpp
+    src/core/Application.cpp
     src/core/Transactions.cpp
     src/core/User.cpp
     src/util/helpers.cpp
