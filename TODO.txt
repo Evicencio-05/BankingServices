@@ -7,6 +7,7 @@
 - Account Class
     - Print accounts function in the user class
     - Limit to 5 accounts a user can have
+    - Make accounts tied to the user class and only ID's are available in the bank class
 
 - Create tests
 

@@ -4,16 +4,17 @@
 #include <string>
 #include <array>
 
-class User 
+class User
 {
 public:
     User() : ID(0), username("John Doe"), password("Password"), numOfAccounts(0) {} 
     User(int newId, std::string newUsername, std::string newPassword) 
         : ID(newId), username(newUsername), password(newPassword), numOfAccounts(0) {} 
 
-    int getUserID()                          const { return ID; }
-    std::string getUsername()                const { return username; }
-    const std::array& getAccountIDs()  const { return accountIDs; }
+    int getUserID()             const { return ID; }
+    std::string getUsername()   const { return username; }
+    int getNumOfAccounts()      const { return numOfAccounts; }
+    const int* getAccountIDs()  const { return accountIDs; }
 
     bool authenticate(const std::string& password);
     bool changePassword(const std::string& oldPassword, const std::string& newPassword);
@@ -25,7 +26,7 @@ private:
     int numOfAccounts;
     std::string username;
     std::string password;
-    std::array<int, MAX_ACCOUNTS> accountIDs;
+    int accountIDs[MAX_ACCOUNTS];
 };
 
 

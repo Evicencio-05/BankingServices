@@ -103,16 +103,23 @@ void Bank::displayUserInfo(const User &user) const
     std::cout << "User ID: " << user.getUserID() 
                 << "\n\tName: " << user.getUsername()
                 << "\n\tAccounts: " << std::endl;
-    for (int accountID : user.getAccountIDs())
+    int numOfAccounts = user.getNumOfAccounts();
+    if (numOfAccounts == 0)
     {
-        auto it = accounts.find(accountID);
-        if (it != accounts.end())
+        std::cout << "No accounts for this user.\n";
+    }
+    else{
+        for (int i = 0; i < numOfAccounts; ++i)
         {
-            std::cout << "\tAccount ID: " << it->second.getAccountID()
-                        << "\t\tType: " << it->second.accountTypeToString(it->second.getAccountType())
-                        << "\t\tBalance: " << it->second.getAccountBalance()
-                        << "\t\tActive: " << it->second.accountStatusToString(it->second.getAccountStatus())
-                        << std::endl; 
+            auto it = accounts.find(accountID);
+            if (it != accounts.end())
+            {
+                std::cout << "\tAccount ID: " << it->second.getAccountID()
+                            << "\t\tType: " << it->second.accountTypeToString(it->second.getAccountType())
+                            << "\t\tBalance: " << it->second.getAccountBalance()
+                            << "\t\tActive: " << it->second.accountStatusToString(it->second.getAccountStatus())
+                            << std::endl; 
+            }
         }
     }
 }
